@@ -18,3 +18,4 @@ jobs:
         with:
           version: 0.15.1
       - run: zig build test
+      - run: zig build test -Dtarget=x86_64-linux
