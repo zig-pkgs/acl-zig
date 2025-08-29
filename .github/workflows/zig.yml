@@ -1,0 +1,20 @@
+name: zig CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    name: Build and Test
+    steps:
+      - uses: actions/checkout@v3
+      - uses: mlugg/setup-zig@v2
+        with:
+          version: 0.15.1
+      - run: zig build test

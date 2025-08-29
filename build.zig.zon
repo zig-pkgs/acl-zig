@@ -33,11 +33,11 @@
     // internet connectivity.
     .dependencies = .{
         .attr = .{
-            .url = "https://download.savannah.nongnu.org/releases/attr/attr-2.5.2.tar.xz",
+            .url = "https://mirror.accum.se/mirror/gnu.org/savannah/attr/attr-2.5.2.tar.xz",
             .hash = "N-V-__8AAOFfIABmKryIERrmcCzqc8APmprf7w_Y3tdVxeab",
         },
         .acl = .{
-            .url = "https://download.savannah.nongnu.org/releases/acl/acl-2.3.2.tar.xz",
+            .url = "https://mirror.accum.se/mirror/gnu.org/savannah/acl/acl-2.3.2.tar.xz",
             .hash = "N-V-__8AABfhJQCx0cQ4z984GlQ57ZdExWjUvPIkK8ISMsjn",
         },
     },

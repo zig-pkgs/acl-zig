@@ -7,6 +7,15 @@ pub fn build(b: *std.Build) void {
     const upstream = b.dependency("acl", .{});
     const attr_upstream = b.dependency("attr", .{});
 
+    const translate_c = b.addTranslateC(.{
+        .root_source_file = b.path("src/c.h"),
+        .target = target,
+        .optimize = optimize,
+        .link_libc = true,
+    });
+    translate_c.defineCMacro("EXPORT", "extern");
+    translate_c.addIncludePath(upstream.path("include"));
+
     const config_h = b.addConfigHeader(.{
         .style = .{
             .autoconf_undef = upstream.path("include/config.h.in"),
@@ -97,9 +106,13 @@ pub fn build(b: *std.Build) void {
         .name = "acl",
         .linkage = .static,
         .root_module = b.createModule(.{
+            .root_source_file = b.path("src/root.zig"),
             .target = target,
             .optimize = optimize,
             .link_libc = true,
+            .imports = &.{
+                .{ .name = "c", .module = translate_c.createModule() },
+            },
         }),
     });
     lib.root_module.addCMacro("HAVE_CONFIG_H", "1");
